@@ -1,3 +1,4 @@
 .idea/
 st
 *.o
+config.h
