@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "Ubuntu Mono:size=13:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -162,17 +162,17 @@ static uint forcemousemod = ShiftMask;
  * Beware that overloading Button1 will disable the selection.
  */
 static MouseShortcut mshortcuts[] = {
-	/* mask                 button   function        argument       release */
-	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
-	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
-	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+	/* button               mask            string */
+	{ Button4,              XK_ANY_MOD,     "\031" },
+	{ Button5,              XK_ANY_MOD,     "\005" },
+	{ Button4,              XK_NO_MOD,      "\031" },
+	{ Button5,              XK_NO_MOD,      "\005" },
 };
 
-static Shortcut shortcuts[] = {
-    /* mask                 keysym          function        argument */
-    [...]
-    { ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-    { ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
+MouseKey mkeys[] = {
+	/* button               mask            function        argument */
+	{ Button4,              ShiftMask,      kscrollup,      {.i =  1} },
+	{ Button5,              ShiftMask,      kscrolldown,    {.i =  1} },
 };
 
 
@@ -197,6 +197,8 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ TERMMOD,              XK_Return,      newterm,        {.i =  0} },
+	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
+    { ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*
